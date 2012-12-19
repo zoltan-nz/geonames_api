@@ -1,5 +1,5 @@
 module GeoNamesAPI
-  class Object
+  class EndpointObject
     
     NESTED = true
 
@@ -30,7 +30,7 @@ module GeoNamesAPI
       end
       
       def url(params={})
-        endpoint = GeoNamesAPI.url + self::METHOD + params_to_url(GeoNamesAPI.params.merge(params))
+        endpoint = URI.escape(GeoNamesAPI.url + self::METHOD + params_to_url(GeoNamesAPI.params.merge(params)))
         GeoNamesAPI.logger.info "GEONAMES REQUEST (#{Time.now}): #{endpoint}" if GeoNamesAPI.logger
         endpoint
       end
@@ -46,7 +46,19 @@ module GeoNamesAPI
 
     def initialize(response)
       parse(response)
-    end 
+    end
+
+    def geo_point
+      GeoPoint.new(lat,lng) rescue nil
+    end
+
+    def geo_box
+      GeoBox.new(north,south,east,west) rescue nil
+    end
+
+    def geo_place
+      GeoPlace.new(geoname_id) rescue nil
+    end
 
     def parse(response)
       response.each do |key, value|
