@@ -10,9 +10,16 @@ module GeoNamesAPI
 
       def postal_code_export
         zip_data = open(postal_code_export_url) { |f| f.binmode; f.read }
-        stream = lambda { return zip_data.slice!(0, 256) }
+        t = Tempfile.new("my-temp-filename-#{Time.now}")
+        
+        Zip::ZipOutputStream.open(t.path) do |z|
+          z.put_next_entry(zip_data)
+          z.write
+        end
+        # stream = lambda { return zip_data.slice!(0, 256) }
         csv = EXPORT_HEADERS.join("\t") + "\n"
-        Zip::Archive.open_buffer(stream) do |archive|
+        #Zip::Archive.open_buffer(stream) do |archive|
+        Zip::ZipInputStream::open(t) do |archive|
           archive.each do |f|
             csv << f.read if f.name =~ /\A#{country_code}/
           end

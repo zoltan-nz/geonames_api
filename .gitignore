@@ -18,3 +18,4 @@ test/version_tmp
 tmp
 test.log
 .DS_Store
+.idea

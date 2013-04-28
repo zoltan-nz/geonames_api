@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   
   gem.add_runtime_dependency "activesupport"
   gem.add_runtime_dependency "tzinfo"
-  gem.add_runtime_dependency "zipruby"
+  gem.add_runtime_dependency "rubyzip"
   gem.add_development_dependency(%q<rspec>, ["~> 2.12.0"])
   
   gem.files         = `git ls-files`.split($/)

@@ -2,7 +2,7 @@ require 'open-uri'
 require 'json'
 require 'csv'
 require 'active_support/all'
-require 'zipruby'
+require 'zip/zip'
 
 Dir[File.dirname(__FILE__) + '/geonames_api/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/geonames_api/endpoint/*.rb'].each {|file| require file }
