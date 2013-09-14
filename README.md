@@ -285,3 +285,6 @@ The other services will be implemented as needed. In the mean time, feel free to
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 6. Thanks <3
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/szines/geonames_api/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
